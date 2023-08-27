@@ -22,14 +22,15 @@ public class Main {
         int errorCode = calc.result(a, b, someOp);
         if (errorCode == Сalculating.ERROR_no)  {
             System.out.printf("Ответ: " + a + " "+ someOp   + " " +   b + " = %.4f", calc.getValue());
-        }
-        else {
+        } else {
             System.err.println("ОШИБКА: " + calc.getErrorText(errorCode));
         }
         } catch (InputMismatchException e) {
             System.err.println("ОШИБКА: Некорректный формат введенных данных");
-            } catch (Exception e) {
-           System.err.println("ОШИБКА: Обратитесь к разработчику");
+        } catch (ArithmeticException e) {
+            System.err.println("ОШИБКА: Деление на ноль запрещено");
+        } catch (Exception e) {
+            System.err.println("ОШИБКА: Обратитесь к разработчику");
         } finally {
             scan.close();
         }

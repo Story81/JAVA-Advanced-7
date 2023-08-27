@@ -2,6 +2,8 @@ package org.example;
 
 import org.example.operations.*;
 
+import java.util.InputMismatchException;
+
 public class Сalculating {
 
     // Объявляем константы для кодов ошибок
@@ -42,14 +44,15 @@ public class Сalculating {
                 val = someOp.result(a, b);
                 return ERROR_no;
             case '/':
+                if (b == 0) {
+                    throw new ArithmeticException("Ошибка: деление на ноль");
+                }
                 someOp = new Divide();
                 val = someOp.result(a, b);
-                if (b == 0) {
-                    return ERROR_zero;
-                }
                 return ERROR_no;
         }
-        return ERROR_not_sup;
+        throw new InputMismatchException("ОШИБКА: Некорректный формат введенных данных");
+//return ERROR_not_sup; -убрать
     }
 
     /**
